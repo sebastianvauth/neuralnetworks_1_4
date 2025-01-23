@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Artificial Neuron - Building Block of Neural Networks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            font-size: 150%;
+        }
+        section {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
+        }
+        h1, h2, h3, h4 {
+            color: #333;
+            margin-top: 20px;
+        }
+        p, li {
+            line-height: 1.6;
+            color: #444;
+            margin-bottom: 20px;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        .image-placeholder, .interactive-placeholder, .continue-button, .vocab-section, .why-it-matters, .test-your-knowledge, .faq-section, .stop-and-think {
+            text-align: left;
+        }
+        .image-placeholder img, .interactive-placeholder img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .vocab-section, .why-it-matters, .test-your-knowledge, .faq-section, .stop-and-think {
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .vocab-section {
+            background-color: #f0f8ff;
+        }
+        .vocab-section h3 {
+            color: #1e90ff;
+            font-size: 0.75em;
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+        .vocab-section h4 {
+            color: #000;
+            font-size: 0.9em;
+            margin-top: 10px;
+            margin-bottom: 8px;
+        }
+        .vocab-term {
+            font-weight: bold;
+            color: #1e90ff;
+        }
+        .why-it-matters {
+            background-color: #ffe6f0;
+        }
+        .why-it-matters h3 {
+            color: #d81b60;
+            font-size: 0.75em;
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+        .stop-and-think {
+            background-color: #e6e6ff;
+        }
+        .stop-and-think h3 {
+            color: #4b0082;
+            font-size: 0.75em;
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+        .continue-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 15px;
+            color: #ffffff;
+            background-color: #007bff;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .reveal-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 15px;
+            color: #ffffff;
+            background-color: #4b0082;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .test-your-knowledge {
+            background-color: #e6ffe6;
+        }
+        .test-your-knowledge h3 {
+            color: #28a745;
+            font-size: 0.75em;
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+        .test-your-knowledge h4 {
+            color: #000;
+            font-size: 0.9em;
+            margin-top: 10px;
+            margin-bottom: 8px;
+        }
+        .test-your-knowledge p {
+            margin-bottom: 15px;
+        }
+        .check-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 15px;
+            color: #ffffff;
+            background-color: #28a745;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            font-size: 1em;
+        }
+        .faq-section {
+            background-color: #fffbea;
+        }
+        .faq-section h3 {
+            color: #ffcc00;
+            font-size: 0.75em;
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+        .faq-section h4 {
+            color: #000;
+            font-size: 0.9em;
+            margin-top: 10px;
+            margin-bottom: 8px;
+        }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <section id="section1">
+        <h1>The Artificial Neuron - Building Block of Neural Networks</h1>
+        <h2>From Biology to Computation: The Artificial Neuron</h2>
+        <div class="image-placeholder">
+            <img src="/placeholder.svg?height=300&width=600" alt="A side-by-side comparison of a biological neuron diagram and an artificial neuron diagram, highlighting the analogous components.">
+        </div>
+        <p>Welcome back! In the last lesson, we explored the fascinating world of biological neurons. Now, let's see how those biological concepts are translated into the computational realm of <strong>artificial neurons</strong>, the fundamental building blocks of artificial neural networks.</p>
+        <div class="continue-button" onclick="showNextSection(2)">Continue</div>
+    </section>
+
+    <section id="section2">
+        <h2>The Artificial Neuron: A Computational Model</h2>
+        <p>An artificial neuron is a simplified, mathematical model of its biological counterpart. It's essentially a computational unit that takes multiple inputs, processes them, and produces an output. Just like a biological neuron, it's designed to mimic the basic signal processing capabilities of the brain cells.</p>
+        <p>Let's break down the structure of an artificial neuron:</p>
+        <div class="interactive-placeholder">
+            <img src="/placeholder.svg?height=300&width=600" alt="A clear and labeled diagram of an artificial neuron. The diagram shows inputs (x₁, x₂, ..., xₘ), each with an associated weight (w₁, w₂, ..., wₘ), a bias (b), a summation unit (Σ), an activation function (φ), and the output (a). Arrows indicate the direction of information flow.">
+            <p>An artificial neuron receives weighted inputs, sums them, adds a bias, applies an activation function, and produces an output.</p>
+        </div>
+        <div class="continue-button" onclick="showNextSection(3)">Continue</div>
+    </section>
+
+    <section id="section3">
+        <p>Here's what each component represents:</p>
+        <div class="vocab-section">
+            <h3>Build Your Vocab</h3>
+            <h4 class="vocab-term">Inputs (x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>m</sub>)</h4>
+            <p>The values fed into the artificial neuron. These can represent various types of information, such as pixel values in an image, words in a text, or numerical features in a dataset. They are analogous to the signals received by the dendrites of a biological neuron.</p>
+            <h4 class="vocab-term">Weights (w<sub>1</sub>, w<sub>2</sub>, ..., w<sub>m</sub>)</h4>
+            <p>Numerical values associated with each input. They represent the strength or importance of each input. A higher weight means the input has a stronger influence on the neuron's output. Think of them as the strength of the synaptic connections in a biological neuron.</p>
+            <h4 class="vocab-term">Bias (b)</h4>
+            <p>A numerical value added to the weighted sum of inputs. It allows the neuron to be activated even when all inputs are zero. It's like a threshold that needs to be overcome for the neuron to fire. You can also think of it as shifting the activation function left or right.</p>
+            <h4 class="vocab-term">Summation Unit (Σ)</h4>
+            <p>A component that calculates the weighted sum of the inputs plus the bias: z = Σ (w<sub>i</sub> * x<sub>i</sub>) + b.</p>
+            <h4 class="vocab-term">Activation Function (φ)</h4>
+            <p>A function that introduces non-linearity into the neuron's output. It takes the weighted sum plus bias (z) as input and transforms it into the neuron's final output (a). Common activation functions include sigmoid, ReLU, and tanh. It's analogous to the firing mechanism of a biological neuron.</p>
+            <h4 class="vocab-term">Output (a)</h4>
+            <p>The final value produced by the artificial neuron after applying the activation function. It can be passed as input to other neurons in the network.</p>
+        </div>
+        <div class="continue-button" onclick="showNextSection(4)">Continue</div>
+    </section>
+
+    <section id="section4">
+        <p>The artificial neuron operates in two main steps:</p>
+        <p><strong>1. Weighted Sum:</strong> It calculates the weighted sum of the inputs and adds the bias. This can be represented mathematically as:</p>
+        <p>z = (w<sub>1</sub> * x<sub>1</sub>) + (w<sub>2</sub> * x<sub>2</sub>) + ... + (w<sub>m</sub> * x<sub>m</sub>) + b</p>
+        <p>Or, more compactly using summation notation:</p>
+        <p>z = Σ<sub>i=1</sub><sup>m</sup> w<sub>i</sub>x<sub>i</sub> + b</p>
+        <div class="continue-button" onclick="showNextSection(5)">Continue</div>
+    </section>
+
+    <section id="section5">
+        <p><strong>2. Activation:</strong> It applies an activation function (φ) to the weighted sum plus bias (z) to produce the neuron's output (a):</p>
+        <p>a = φ(z)</p>
+        <div class="why-it-matters">
+            <h3>Why It Matters</h3>
+            <p>These two steps, weighted sum and activation, are crucial for the artificial neuron's ability to learn and make decisions. The weights and bias are adjusted during training to optimize the network's performance.</p>
+        </div>
+        <div class="stop-and-think">
+            <h3>Stop and Think</h3>
+            <h4>How does the concept of weights in an artificial neuron relate to the biological inspiration?</h4>
+            <button class="reveal-button" onclick="revealAnswer('stop-and-think-1')">Reveal</button>
+            <p id="stop-and-think-1" style="display: none;">Weights in an artificial neuron are analogous to the strength of synaptic connections between biological neurons. A stronger synaptic connection means a signal has a greater influence on the receiving neuron. Similarly, a higher weight in an artificial neuron means the corresponding input has a stronger impact on the neuron's output.</p>
+        </div>
+        <div class="continue-button" onclick="showNextSection(6)">Continue</div>
+    </section>
+
+    <section id="section6">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-section">
+            <h3>Frequently Asked Questions</h3>
+            <h4>Why are activation functions necessary?</h4>
+            <p>Activation functions introduce non-linearity into the network. Without them, the entire neural network, no matter how many layers it has, would collapse into a simple linear model, severely limiting its ability to learn complex patterns. They are essential for enabling neural networks to approximate any function.</p>
+            <h4>How are the weights and bias determined?</h4>
+            <p>The weights and bias are initially assigned random values. They are then adjusted during the training process using algorithms like backpropagation, which we'll explore in later lessons. The goal is to find the optimal values for weights and bias that minimize the error between the network's predictions and the actual target values.</p>
+        </div>
+        <div class="continue-button" onclick="showNextSection(7)">Continue</div>
+    </section>
+
+    <section id="section7">
+        <h2>Test Your Knowledge</h2>
+        <div class="test-your-knowledge">
+            <h3>Test Your Knowledge</h3>
+            <h4>What is the output of an artificial neuron if the weighted sum of its inputs plus bias is 5, and the activation function is a simple linear function φ(z) = z?</h4>
+            <form id="quiz-form">
+                <input type="radio" id="option1" name="quiz" value="0">
+                <label for="option1">0</label><br>
+                <input type="radio" id="option2" name="quiz" value="5">
+                <label for="option2">5</label><br>
+                <input type="radio" id="option3" name="quiz" value="1">
+                <label for="option3">1</label><br>
+                <input type="radio" id="option4" name="quiz" value="depends">
+                <label for="option4">It depends on the specific weights and inputs.</label><br>
+                <button type="button" class="check-button" onclick="checkAnswer()">Check Answer</button>
+            </form>
+            <p id="quiz-result" style="display: none;"></p>
+        </div>
+        <div class="continue-button" onclick="showNextSection(8)">Continue</div>
+    </section>
+
+    <section id="section8">
+        <h2>Review and Reflect</h2>
+        <div class="image-placeholder">
+            <img src="/placeholder.svg?height=300&width=600" alt="An abstract, artistic representation of an artificial neuron, emphasizing its computational nature and connection to the network.">
+        </div>
+        <p>In this lesson, we've introduced the artificial neuron, the computational counterpart of the biological neuron. We've explored its key components – inputs, weights, bias, summation unit, and activation function – and learned how they work together to process information. The artificial neuron, with its weighted sum and activation, forms the foundation for building complex neural networks. In the next lesson, we'll dive deeper into the mathematical formulation of the perceptron, a specific type of artificial neuron.</p>
+    </section>
+
+    <script>
+        // Show the first section initially
+        document.getElementById("section1").style.display = "block";
+        document.getElementById("section1").style.opacity = "1";
+
+        function showNextSection(nextSectionId) {
+            const currentButton = event.target;
+            const nextSection = document.getElementById("section" + nextSectionId);
+            
+            currentButton.style.display = "none";
+            
+            nextSection.style.display = "block";
+            setTimeout(() => {
+                nextSection.style.opacity = "1";
+            }, 10);
+
+            setTimeout(() => {
+                nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 500);
+        }
+
+        function revealAnswer(id) {
+            const revealText = document.getElementById(id);
+            const revealButton = event.target;
+            
+            revealText.style.display = "block";
+            revealButton.style.display = "none";
+        }
+
+        function checkAnswer() {
+            const form = document.getElementById('quiz-form');
+            const result = document.getElementById('quiz-result');
+            const selectedAnswer = form.querySelector('input[name="quiz"]:checked');
+
+            if (selectedAnswer) {
+                if (selectedAnswer.value === "5") {
+                    result.textContent = "Correct! Since the activation function is φ(z) = z, the output is simply the weighted sum plus bias, which is 5.";
+                    result.style.color = "green";
+                } else {
+                    result.textContent = "Incorrect. Try again!";
+                    result.style.color = "red";
+                }
+                result.style.display = "block";
+            } else {
+                alert("Please select an answer before checking.");
+            }
+        }
+    </script>
+</body>
+</html>
